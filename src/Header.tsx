@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Clock } from "lucide-react";
 import IconPng from "./assets/icon.png";
+import Logo35Svg from "./assets/logo35-v2026.svg";
 import { appConfig } from "./config";
 
 interface HeaderProps {
@@ -18,11 +19,18 @@ export const Header: React.FC<HeaderProps> = ({ stats }) => {
   return (
     <header className="h-20 bg-card/80 backdrop-blur-md border-b border-white/10 flex items-center justify-between px-8 shrink-0 relative z-10">
       <div className="flex items-center gap-4 min-w-0">
-        <img
-          src={IconPng}
-          alt="Logo"
-          className="w-10 h-10 object-contain drop-shadow-[0_0_10px_rgba(255,215,0,0.5)] shrink-0"
-        />
+        <div className="flex items-center gap-3 shrink-0">
+          <img
+            src={IconPng}
+            alt="Logo"
+            className="w-10 h-10 object-contain drop-shadow-[0_0_10px_rgba(255,215,0,0.5)] shrink-0"
+          />
+          <img
+            src={Logo35Svg}
+            alt="Logo 35"
+            className="h-8 w-auto max-w-[10rem] object-contain shrink-0"
+          />
+        </div>
         <h1 className="text-xl md:text-2xl font-bold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-primaryText to-secondaryText truncate">
           {appConfig.eventTitle}
         </h1>
