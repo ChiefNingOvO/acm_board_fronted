@@ -4,8 +4,9 @@ const SPECIAL_THANKS = [
   "RainnbowDash",
   "ColdCloud",
   "RainFly",
-  "tttshaoqi",
-  "wyf",
+  "Tttshaoqi",
+  "Txwin",
+  "Rain"
 ];
 
 export const Footer: React.FC = () => {
