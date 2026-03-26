@@ -28,6 +28,12 @@ export interface FirstBlood {
 interface FirstBloodApiItem {
   problem_id: string;
   user_id: string;
+  judge_time: string | null;
+}
+
+interface SubmissionStatsApiResponse {
+  total_submissions: number;
+  accepted_submissions: number;
 }
 
 export const PROBLEMS: ProblemId[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"];
@@ -56,9 +62,10 @@ function formatJudgeTime(judgeTime?: string) {
 }
 
 function extractDisplayName(rawUserId?: string | null) {
-  if (!rawUserId || rawUserId === "-1") return null;
+  if (!rawUserId) return null;
 
   const trimmed = rawUserId.trim();
+  if (trimmed === "-1" || trimmed === "1") return null;
   if (!trimmed) return null;
 
   return trimmed.split(/\s+/)[0] || null;
@@ -211,11 +218,6 @@ export function useEngine() {
           }));
         }
 
-        setStats((prev) => ({
-          total: prev.total + 1,
-          ac: prev.ac + (finalStatus === "AC" ? 1 : 0),
-        }));
-
         setTimeout(() => {
           setSubmissions((current) => current.filter((submission) => submission.id !== submissionId));
         }, 4000);
@@ -282,6 +284,44 @@ export function useEngine() {
   useEffect(() => {
     let cancelled = false;
 
+    async function fetchSubmissionStats() {
+      try {
+        const response = await fetch(appConfig.submissionStatsPath);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = (await response.json()) as Partial<SubmissionStatsApiResponse>;
+        if (cancelled) return;
+
+        const total = Number(data.total_submissions);
+        const accepted = Number(data.accepted_submissions);
+        if (!Number.isFinite(total) || !Number.isFinite(accepted)) {
+          return;
+        }
+
+        setStats({
+          total,
+          ac: accepted,
+        });
+      } catch (error) {
+        console.error("Fetch submission stats error:", error);
+      }
+    }
+
+    fetchSubmissionStats();
+
+    const timer = window.setInterval(fetchSubmissionStats, appConfig.submissionStatsPollMs);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
     async function fetchInitialFirstBloods() {
       try {
         const response = await fetch(appConfig.firstBloodPath);
@@ -303,6 +343,7 @@ export function useEngine() {
             const team = extractDisplayName(item.user_id);
             if (!team) continue;
             if (current[problemId]?.team) continue;
+            const formattedJudgeTime = formatJudgeTime(item.judge_time ?? undefined);
 
             next[problemId] = {
               ...current[problemId],
@@ -310,6 +351,7 @@ export function useEngine() {
               team,
               timestamp: current[problemId]?.timestamp ?? Date.now(),
               isNew: false,
+              judge_time: formattedJudgeTime || undefined,
             };
             changed = true;
           }

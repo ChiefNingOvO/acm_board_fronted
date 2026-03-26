@@ -38,31 +38,24 @@ export const RankListPanel: React.FC = () => {
     if (!isStarted || allRanks.length === 0) return;
 
     const totalPages = Math.ceil(allRanks.length / itemsPerPage);
-    if (totalPages <= 1) {
-      const timer = window.setTimeout(() => {
+    const timer = window.setTimeout(() => {
+      const isLastPage = currentPage >= totalPages - 1;
+      if (isLastPage) {
         fetchRanks();
-      }, appConfig.rankRotateMs);
-      return () => window.clearTimeout(timer);
-    }
+        return;
+      }
 
-    const timer = window.setInterval(() => {
-      setCurrentPage((prev) => {
-        const nextPage = prev + 1;
-        if (nextPage >= totalPages) {
-          fetchRanks();
-          return prev;
-        }
-        return nextPage;
-      });
+      setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
     }, appConfig.rankRotateMs);
 
-    return () => window.clearInterval(timer);
-  }, [allRanks.length, fetchRanks, isStarted, itemsPerPage]);
+    return () => window.clearTimeout(timer);
+  }, [allRanks.length, currentPage, fetchRanks, isStarted, itemsPerPage]);
 
   const currentDisplayRanks = allRanks.slice(
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage,
   );
+  const displaySlots = Array.from({ length: itemsPerPage }, (_, index) => currentDisplayRanks[index] ?? null);
 
   return (
     <div className="w-[300px] h-full border-l border-white/10 bg-white/5 flex flex-col backdrop-blur-md relative z-10 shrink-0 shadow-[-4px_0_24px_rgba(0,0,0,0.5)]">
@@ -73,7 +66,7 @@ export const RankListPanel: React.FC = () => {
         </h2>
       </div>
 
-      <div className="flex-1 overflow-hidden p-2 flex flex-col justify-start gap-1.5 relative">
+      <div className="flex-1 overflow-hidden p-2 relative">
         <AnimatePresence mode="popLayout">
           {!isStarted ? (
             <motion.div
@@ -103,41 +96,57 @@ export const RankListPanel: React.FC = () => {
               </button>
             </motion.div>
           ) : (
-            currentDisplayRanks.map((item) => (
-              <motion.div
-                layout
-                key={item.name}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                className={`flex items-center gap-3 p-2 rounded-lg border shadow-sm flex-1 shrink-0 ${
-                  item.rank === 1
-                    ? "bg-gradient-to-r from-yellow-500/30 to-transparent border-yellow-500/50"
-                    : item.rank === 2
-                      ? "bg-gradient-to-r from-gray-300/30 to-transparent border-gray-300/50"
-                      : item.rank === 3
-                        ? "bg-gradient-to-r from-amber-700/30 to-transparent border-amber-700/50"
-                        : "bg-black/40 border-white/10"
-                }`}
-              >
-                <div
-                  className={`w-8 text-center font-black font-mono ${
-                    item.rank === 1
-                      ? "text-yellow-500 drop-shadow-[0_0_5px_rgba(234,179,8,0.8)]"
-                      : item.rank === 2
-                        ? "text-gray-300 drop-shadow-[0_0_5px_rgba(209,213,219,0.8)]"
-                        : item.rank === 3
-                          ? "text-amber-700 drop-shadow-[0_0_5px_rgba(180,83,9,0.8)]"
-                          : "text-white/40"
-                  }`}
-                >
-                  #{item.rank}
-                </div>
-                <div className="flex-1 font-bold text-sm truncate text-primaryText" title={item.name}>
-                  {item.name}
-                </div>
-              </motion.div>
-            ))
+            <div
+              className="grid h-full gap-1.5"
+              style={{ gridTemplateRows: `repeat(${itemsPerPage}, minmax(0, 1fr))` }}
+            >
+              {displaySlots.map((item, index) =>
+                item ? (
+                  <motion.div
+                    layout
+                    key={`${currentPage}-${item.rank}-${item.name}`}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    className={`flex min-h-0 items-center gap-3 p-2 rounded-lg border shadow-sm ${
+                      item.rank === 1
+                        ? "bg-gradient-to-r from-yellow-500/30 to-transparent border-yellow-500/50"
+                        : item.rank === 2
+                          ? "bg-gradient-to-r from-gray-300/30 to-transparent border-gray-300/50"
+                          : item.rank === 3
+                            ? "bg-gradient-to-r from-amber-700/30 to-transparent border-amber-700/50"
+                            : "bg-black/40 border-white/10"
+                    }`}
+                  >
+                    <div
+                      className={`w-8 text-center font-black font-mono ${
+                        item.rank === 1
+                          ? "text-yellow-500 drop-shadow-[0_0_5px_rgba(234,179,8,0.8)]"
+                          : item.rank === 2
+                            ? "text-gray-300 drop-shadow-[0_0_5px_rgba(209,213,219,0.8)]"
+                            : item.rank === 3
+                              ? "text-amber-700 drop-shadow-[0_0_5px_rgba(180,83,9,0.8)]"
+                              : "text-white/40"
+                      }`}
+                    >
+                      #{item.rank}
+                    </div>
+                    <div
+                      className="flex-1 font-bold text-sm truncate text-primaryText"
+                      title={item.name}
+                    >
+                      {item.name}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <div
+                    key={`empty-${currentPage}-${index}`}
+                    className="min-h-0 rounded-lg border border-transparent bg-transparent"
+                    aria-hidden="true"
+                  />
+                ),
+              )}
+            </div>
           )}
         </AnimatePresence>
       </div>

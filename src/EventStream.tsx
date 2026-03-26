@@ -9,10 +9,9 @@ interface Props {
 
 export const EventStream: React.FC<Props> = ({ submissions }) => {
   return (
-    <div className="flex-1 h-full overflow-hidden p-8 pb-24 relative z-10 flex flex-col justify-end">
-      {/* Container for cards, aligning them to the bottom to float up */}
+    <div className="flex-1 h-full overflow-hidden p-8 pb-24 relative z-10 flex flex-col">
       <div className="w-full max-w-5xl mx-auto relative z-10 h-full">
-        <div className="relative flex h-full flex-col justify-end gap-3">
+        <div className="relative flex h-full flex-col justify-start gap-3">
           <AnimatePresence mode="popLayout">
             {submissions.map((sub) => (
               <SubmissionCard key={sub.id} sub={sub} />

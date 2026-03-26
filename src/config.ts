@@ -25,6 +25,7 @@ export const appConfig = {
   apiBasePath: normalizePath(import.meta.env.VITE_API_BASE_PATH, "/api"),
   rankListPath: "",
   firstBloodPath: "",
+  submissionStatsPath: "",
   kafkaWebSocketUrl: import.meta.env.VITE_KAFKA_WS_URL?.trim() || "/ws",
   countdownTriggerAt: import.meta.env.VITE_COUNTDOWN_TRIGGER_AT?.trim() || "",
   countdownDurationMs:
@@ -41,6 +42,7 @@ export const appConfig = {
   rankPageSize: toPositiveNumber(import.meta.env.VITE_RANK_PAGE_SIZE, 10),
   rankRotateMs: toPositiveNumber(import.meta.env.VITE_RANK_ROTATE_MS, 5000),
   rankAutoStart: toBoolean(import.meta.env.VITE_RANK_AUTO_START, true),
+  submissionStatsPollMs: toPositiveNumber(import.meta.env.VITE_SUBMISSION_STATS_POLL_MS, 10000),
 };
 
 appConfig.rankListPath = normalizePath(
@@ -51,4 +53,9 @@ appConfig.rankListPath = normalizePath(
 appConfig.firstBloodPath = normalizePath(
   import.meta.env.VITE_FIRST_BLOOD_PATH,
   `${appConfig.apiBasePath}/get_first_blood`,
+);
+
+appConfig.submissionStatsPath = normalizePath(
+  import.meta.env.VITE_SUBMISSION_STATS_PATH,
+  `${appConfig.apiBasePath}/get_submission_stats`,
 );

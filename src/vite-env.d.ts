@@ -8,6 +8,8 @@ interface ImportMetaEnv {
   readonly VITE_API_BASE_PATH?: string;
   readonly VITE_RANK_LIST_PATH?: string;
   readonly VITE_FIRST_BLOOD_PATH?: string;
+  readonly VITE_SUBMISSION_STATS_PATH?: string;
+  readonly VITE_SUBMISSION_STATS_POLL_MS?: string;
   readonly VITE_KAFKA_WS_URL?: string;
   readonly VITE_COUNTDOWN_TRIGGER_AT?: string;
   readonly VITE_COUNTDOWN_DURATION_MINUTES?: string;
