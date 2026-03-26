@@ -49,7 +49,7 @@ export const RankListPanel: React.FC = () => {
     }, appConfig.rankRotateMs);
 
     return () => window.clearTimeout(timer);
-  }, [allRanks.length, currentPage, fetchRanks, isStarted, itemsPerPage]);
+  }, [allRanks, currentPage, fetchRanks, isStarted, itemsPerPage]);
 
   const currentDisplayRanks = allRanks.slice(
     currentPage * itemsPerPage,
