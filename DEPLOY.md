@@ -45,15 +45,17 @@ VITE_EVENT_START_COUNTDOWN_TITLE=Contest Starts In
 VITE_EVENT_START_COUNTDOWN_SUBTITLE=The board will open automatically at the configured time
 VITE_RANK_LIST_PATH=/api/get_rank_list
 VITE_FIRST_BLOOD_PATH=/api/get_first_blood
+VITE_SUBMISSION_STATS_PATH=/api/get_submission_stats
+VITE_SUBMISSION_STATS_POLL_MS=10000
 VITE_KAFKA_WS_URL=/ws
 
-SERVER_NAME=_
+SERVER_NAME=example.com
 STATIC_ROOT=/opt/acm-board/frontend/dist
 API_PROXY_TARGET=http://127.0.0.1:8090
 WS_PROXY_TARGET=http://127.0.0.1:8080
 FRONTEND_PORT=80
 
-KAFKA_BROKERS=49.234.197.24:9092
+KAFKA_BROKERS=broker1.example.com:9092,broker2.example.com:9092
 KAFKA_TOPIC=acm.board.submission.events
 KAFKA_CLIENT_ID=acm-board-proxy
 KAFKA_GROUP_ID=acm-board-ws-proxy

@@ -9,7 +9,7 @@ function toBoolean(value) {
 }
 
 function getBrokers() {
-  return (process.env.KAFKA_BROKERS || "49.234.197.24:9092")
+  return (process.env.KAFKA_BROKERS || "broker1.example.com:9092,broker2.example.com:9092")
     .split(",")
     .map((broker) => broker.trim())
     .filter(Boolean);

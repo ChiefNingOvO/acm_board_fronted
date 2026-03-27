@@ -1,0 +1,9 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="24" fill="#0B1020"/>
+  <circle cx="820" cy="360" r="220" fill="#16361F" fill-opacity="0.35"/>
+  <circle cx="380" cy="520" r="180" fill="#301B12" fill-opacity="0.25"/>
+  <text x="600" y="150" text-anchor="middle" fill="#CBD5E1" font-size="22" font-family="Segoe UI, Arial, sans-serif">距离比赛开始</text>
+  <text x="600" y="270" text-anchor="middle" fill="#F8FAFC" font-size="52" font-family="Segoe UI, Arial, sans-serif" font-weight="700">赛前准备图</text>
+  <text x="600" y="430" text-anchor="middle" fill="#FACC15" font-size="110" font-family="Consolas, monospace" font-weight="700">00:11:52</text>
+  <text x="600" y="520" text-anchor="middle" fill="#E5E7EB" font-size="26" font-family="Segoe UI, Arial, sans-serif">Replace this placeholder with the real pre-start countdown screenshot</text>
+</svg>

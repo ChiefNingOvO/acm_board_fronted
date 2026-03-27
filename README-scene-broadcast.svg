@@ -1,0 +1,9 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="24" fill="#0B1020"/>
+  <rect x="0" y="0" width="1200" height="720" rx="24" fill="#081611" fill-opacity="0.25"/>
+  <rect x="160" y="180" width="880" height="360" rx="24" fill="#172033" stroke="#245C47"/>
+  <circle cx="600" cy="278" r="46" fill="#103A2A"/>
+  <text x="600" y="294" text-anchor="middle" fill="#22C55E" font-size="48" font-family="Segoe UI Symbol, Segoe UI, Arial, sans-serif">!</text>
+  <text x="600" y="390" text-anchor="middle" fill="#F8FAFC" font-size="42" font-family="Segoe UI, Arial, sans-serif" font-weight="700">大屏消息</text>
+  <text x="600" y="452" text-anchor="middle" fill="#CBD5E1" font-size="24" font-family="Segoe UI, Arial, sans-serif">Replace this placeholder with the real broadcast modal screenshot</text>
+</svg>

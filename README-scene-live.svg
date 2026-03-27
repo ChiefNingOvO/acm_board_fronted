@@ -1,0 +1,13 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="24" fill="#0B1020"/>
+  <rect x="20" y="20" width="1160" height="70" rx="14" fill="#121A2D" stroke="#24314F"/>
+  <rect x="20" y="106" width="200" height="560" rx="16" fill="#101522" stroke="#22304B"/>
+  <rect x="238" y="106" width="702" height="560" rx="16" fill="#081611" stroke="#184936"/>
+  <rect x="958" y="106" width="222" height="560" rx="16" fill="#101522" stroke="#22304B"/>
+  <rect x="20" y="682" width="1160" height="18" rx="9" fill="#111827"/>
+  <text x="50" y="64" fill="#F8FAFC" font-size="28" font-family="Segoe UI, Arial, sans-serif" font-weight="700">比赛实时图</text>
+  <text x="50" y="142" fill="#F8FAFC" font-size="22" font-family="Segoe UI, Arial, sans-serif">FIRST BLOODS</text>
+  <text x="274" y="142" fill="#F8FAFC" font-size="22" font-family="Segoe UI, Arial, sans-serif">LIVE SUBMISSION STREAM</text>
+  <text x="994" y="142" fill="#F8FAFC" font-size="22" font-family="Segoe UI, Arial, sans-serif">TOP 100 RANKS</text>
+  <text x="600" y="390" text-anchor="middle" fill="#94A3B8" font-size="26" font-family="Segoe UI, Arial, sans-serif">Replace this placeholder with the real live board screenshot</text>
+</svg>

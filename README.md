@@ -1,5 +1,11 @@
 # ACM Board Frontend
 
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
+![Kafka](https://img.shields.io/badge/Kafka-Realtime-231F20?logo=apachekafka&logoColor=white)
+![Deploy](https://img.shields.io/badge/Deploy-Docker%20%7C%20Nginx-0EA5E9)
+
 一个面向 ACM / ICPC 现场展示场景的大屏前端项目。
 
 它负责把比赛过程里的核心信息以大屏形式实时展示出来，包括：
@@ -12,6 +18,54 @@
 - 开赛前倒计时与赛中倒计时
 
 项目采用 `React + TypeScript + Vite` 构建，实时消息通过 `Kafka -> WebSocket Proxy -> Browser` 的方式推送到前端。
+
+## 页面预览
+
+![Project Preview](./README-preview.svg)
+
+上图是当前项目的大屏结构预览示意，实际页面包含：
+
+- 顶部赛事信息与实时统计
+- 左侧首刀列表
+- 中间判题流
+- 右侧榜单轮播
+- 底部滚动消息与全局公告
+
+如果后续你有正式截图，可以直接替换掉 [README-preview.svg](/E:/acm_board_frontend/README-preview.svg)。
+
+## 场景截图
+
+下面这组区域用于展示项目在不同比赛阶段下的页面效果。
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="./README-scene-live.svg" alt="比赛实时图" />
+      <p><strong>比赛实时图</strong><br />实时展示首刀、判题流、榜单和滚动消息。</p>
+    </td>
+    <td width="50%" valign="top">
+      <img src="./README-scene-freeze.svg" alt="封榜图" />
+      <p><strong>封榜图</strong><br />在赛中切换为倒计时模式时的页面状态。</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="./README-scene-broadcast.svg" alt="大屏消息" />
+      <p><strong>大屏消息</strong><br />全局广播消息弹窗覆盖在大屏之上的展示效果。</p>
+    </td>
+    <td width="50%" valign="top">
+      <img src="./README-scene-prestart.svg" alt="赛前准备图" />
+      <p><strong>赛前准备图</strong><br />比赛开始前的整页倒计时等待界面。</p>
+    </td>
+  </tr>
+</table>
+
+如果你后续把真实截图文件放进仓库，只需要用同名文件替换下面这些占位图即可：
+
+- `README-scene-live.svg`
+- `README-scene-freeze.svg`
+- `README-scene-broadcast.svg`
+- `README-scene-prestart.svg`
 
 ## 功能特性
 
@@ -253,21 +307,14 @@ npm run render:nginx
 
 - [DEPLOY.md](/E:/acm_board_frontend/DEPLOY.md)
 
+## 开源协作
+
+- 许可证：[LICENSE](/E:/acm_board_frontend/LICENSE)
+- 贡献指南：[CONTRIBUTING.md](/E:/acm_board_frontend/CONTRIBUTING.md)
+- 开源前检查清单：[OPEN_SOURCE_CHECKLIST.md](/E:/acm_board_frontend/OPEN_SOURCE_CHECKLIST.md)
+
 ## 适用场景
 
 - ACM / ICPC 校赛、选拔赛、训练赛现场大屏
 - 需要把榜单、首刀、判题流、公告集中展示的比赛场景
 - 希望通过 Kafka 实时推送消息到前端的大屏项目
-
-## 说明
-
-这个项目当前更偏向比赛现场专用大屏，而不是通用后台系统。
-
-如果你准备把它开源到 GitHub，建议同时补充：
-
-- 项目截图
-- 实际部署地址或演示视频
-- 消息样例
-- 比赛 Logo / 主视觉
-
-这样仓库首页的观感会更完整。
