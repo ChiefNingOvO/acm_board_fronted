@@ -31,36 +31,39 @@
 - 右侧榜单轮播
 - 底部滚动消息与全局公告
 
-如果后续你有正式截图，可以直接替换掉 [README-preview.svg](/E:/acm_board_frontend/README-preview.svg)。
+如果后续你有正式截图，可以直接替换掉 `README-preview.svg`。
 
 ## 场景截图
 
-下面这组区域用于展示项目在不同比赛阶段下的页面效果。
+下面这组截图区域用于展示项目在不同比赛阶段下的页面效果，适合作为 GitHub 首页的功能预览。
+
+当前仓库里这 4 张图还是 README 占位图，目的是先把版式和说明搭好。
+你后续只需要把真实截图替换成同名文件，README 就会自动展示真实页面效果。
 
 <table>
   <tr>
     <td width="50%" valign="top">
       <img src="./README-scene-live.svg" alt="比赛实时图" />
-      <p><strong>比赛实时图</strong><br />实时展示首刀、判题流、榜单和滚动消息。</p>
+      <p><strong>比赛实时图</strong><br />展示比赛进行中的主大屏，包括首刀、判题流、榜单轮播和滚动消息。</p>
     </td>
     <td width="50%" valign="top">
       <img src="./README-scene-freeze.svg" alt="封榜图" />
-      <p><strong>封榜图</strong><br />在赛中切换为倒计时模式时的页面状态。</p>
+      <p><strong>封榜图</strong><br />进入封榜或赛中倒计时阶段后，左侧与中间区域切换为大尺寸倒计时展示。</p>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
       <img src="./README-scene-broadcast.svg" alt="大屏消息" />
-      <p><strong>大屏消息</strong><br />全局广播消息弹窗覆盖在大屏之上的展示效果。</p>
+      <p><strong>大屏消息</strong><br />全局广播消息以高优先级弹窗形式覆盖在大屏之上，适合播放通知或现场提醒。</p>
     </td>
     <td width="50%" valign="top">
       <img src="./README-scene-prestart.svg" alt="赛前准备图" />
-      <p><strong>赛前准备图</strong><br />比赛开始前的整页倒计时等待界面。</p>
+      <p><strong>赛前准备图</strong><br />比赛开始前展示全屏倒计时，明确提示开赛时间和当前准备状态。</p>
     </td>
   </tr>
 </table>
 
-如果你后续把真实截图文件放进仓库，只需要用同名文件替换下面这些占位图即可：
+建议把真实截图按下面这组文件名放进仓库，替换后无需再修改 README：
 
 - `README-scene-live.svg`
 - `README-scene-freeze.svg`
